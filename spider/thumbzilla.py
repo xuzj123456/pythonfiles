@@ -1,0 +1,81 @@
+# coding=utf-8
+import collections
+import os
+import re
+import requests
+from multiprocessing import Pool
+
+from spider.urls import *
+from tools.clock import Clock
+
+
+def check_repeat(target_url):
+    file_name = str(target_url.split('/')[-2]) + '.mp4'
+    if file_name in os.listdir(r'F:\delete'):
+        os.remove(os.path.join(r'F:\delete', file_name))
+
+
+def save_func(target_url, path):
+    video_page = requests.get(target_url, headers=headers)
+    with open(path, 'wb') as f:
+        f.write(video_page.content)
+        f.close()
+
+
+def download_func(url):
+    print('正在处理 %s' % url)
+    req = requests.get(url, headers=headers)
+    html = req.text
+    target_url = re.findall(r'data-quality="(.*?)">...P</a></li>', html)[-1]
+    print('video url ' + target_url)
+
+    path = os.path.join(root, url.split('/')[-1]) + '   ' + str(target_url.split('/')[-2]) + '.mp4'
+    if not os.path.exists(path):
+        save_func(target_url, path)
+        check_repeat(target_url)
+    else:
+        print('**********   %s文件已存在   **************' % url)
+
+
+def run_func(url):
+    failed_flag = False
+    try:
+        download_func(url)
+        print('url %s has done successfully.' % url)
+    except Exception as e:
+        print('*********  url %s failed   *************' % url)
+        print(e)
+        failed_flag = True
+    return failed_flag
+
+
+def run(urls):
+    clock = Clock()
+    clock.Start()
+
+    p = Pool(4)
+
+    results = []
+    for url in urls:
+        temp = p.apply_async(run_func, args=(url,))
+        results.append(temp)
+
+    p.close()
+    p.join()
+
+    clock.End()
+    clock.Time()
+    results = [r.get() for r in results]
+    print('共失败%d次' % collections.Counter(results)[True])    # 每个失败都将返回一个True,统计True的个数
+
+
+root = r'F:\new'
+
+headers = {
+    'upgrade-insecure-requests': '1',
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) '
+                  'Chrome/68.0.3440.106 Safari/537.36'
+}
+
+if __name__ == '__main__':
+    run(urls_2)
