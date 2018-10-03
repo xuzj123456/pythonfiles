@@ -13,14 +13,14 @@ def check_repeat(target_url):
     file_name = str(target_url.split('/')[-2]) + '.mp4'
     if file_name in os.listdir(r'F:\delete'):
         os.remove(os.path.join(r'F:\delete', file_name))
-
+# 检验重复
 
 def save_func(target_url, path):
     video_page = requests.get(target_url, headers=headers)
     with open(path, 'wb') as f:
         f.write(video_page.content)
         f.close()
-
+# 保存
 
 def download_func(url):
     print('正在处理 %s' % url)
@@ -35,7 +35,7 @@ def download_func(url):
         check_repeat(target_url)
     else:
         print('**********   %s文件已存在   **************' % url)
-
+# 获取下载url并保存
 
 def run_func(url):
     failed_flag = False
@@ -47,7 +47,7 @@ def run_func(url):
         print(e)
         failed_flag = True
     return failed_flag
-
+# 将主体置入try except中
 
 def run(urls):
     clock = Clock()
@@ -67,15 +67,15 @@ def run(urls):
     clock.Time()
     results = [r.get() for r in results]
     print('共失败%d次' % collections.Counter(results)[True])    # 每个失败都将返回一个True,统计True的个数
+# 主运行函数
 
-
-root = r'F:\new'
+root = r'F:\new'    # 文件保存位置
 
 headers = {
     'upgrade-insecure-requests': '1',
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) '
                   'Chrome/68.0.3440.106 Safari/537.36'
-}
+}     # requests headers
 
 if __name__ == '__main__':
     run(urls_2)
