@@ -78,4 +78,4 @@ headers = {
 }     # requests headers
 
 if __name__ == '__main__':
-    run(urls_2)
+    run(urls_1)
