@@ -13,3 +13,5 @@ print(df['one'])        # 列选择
 print(df[1:2])
 print(df.loc['a'])
 print(df.iloc[1])       # 行选择
+
+print(df[(df.two > 2) & (df.four > 20)])        # 筛选行
