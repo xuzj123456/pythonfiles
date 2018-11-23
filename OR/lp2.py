@@ -5,6 +5,7 @@ from scipy import optimize
 max  Z = 2x1 + 3x2
 s.t. x1 + 2x2 <= 4
      x1 + x2 = 3
+     x1, x2 >= 0
 '''
 
 c = numpy.array([2, 3])
@@ -12,5 +13,5 @@ A_ub = numpy.array([[1, 2],])
 B_ub = numpy.array([4,])
 A_eq = numpy.array([[1, 1],])
 B_eq = numpy.array([3])
-result = optimize.linprog(-c, A_ub, B_ub, A_eq, B_eq)
+result = optimize.linprog(-c, A_ub, B_ub, A_eq, B_eq, bounds = ((0, None), (0, None)))
 print(result)
