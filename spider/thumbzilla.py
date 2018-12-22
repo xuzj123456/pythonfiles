@@ -4,16 +4,12 @@ import os
 import re
 import requests
 from multiprocessing import Pool
+from urllib.parse import unquote
 
 from spider.urls import *
 from tools.clock import Clock
 
 
-def check_repeat(target_url):
-    file_name = str(target_url.split('/')[-2]) + '.mp4'
-    if file_name in os.listdir(r'F:\delete'):
-        os.remove(os.path.join(r'F:\delete', file_name))
-# 检验重复
 
 def save_func(target_url, path):
     video_page = requests.get(target_url, headers=headers)
@@ -29,10 +25,10 @@ def download_func(url):
     target_url = re.findall(r'data-quality="(.*?)">...P</a></li>', html)[-1]
     print('video url ' + target_url)
 
-    path = os.path.join(root, url.split('/')[-1]) + '   ' + str(target_url.split('/')[-2]) + '.mp4'
+    path = os.path.join(root, unquote(unquote(url.split('/')[-1]))) + '   ' + str(target_url.split('/')[-2]) + '.mp4'
+    # 两重unquote函数是为了将url中的编码转化
     if not os.path.exists(path):
         save_func(target_url, path)
-        check_repeat(target_url)
     else:
         print('**********   %s文件已存在   **************' % url)
 # 获取下载url并保存
