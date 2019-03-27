@@ -1,6 +1,5 @@
 # coding=utf-8
 import turtle as t
-import turtle as t
 # 绘制小猪佩奇
 # =======================================
 
