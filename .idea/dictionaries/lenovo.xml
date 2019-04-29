@@ -5,6 +5,7 @@
       <w>...elt</w>
       <w>...length</w>
       <w>.DollarNames.timeSeries</w>
+      <w>.QMLECondDist</w>
       <w>.__C__HLS</w>
       <w>.__C__HSV</w>
       <w>.__C__LAB</w>
@@ -23,6 +24,9 @@
       <w>.__C__ddenseModelMatrix</w>
       <w>.__C__denseModelMatrix</w>
       <w>.__C__dsparseModelMatrix</w>
+      <w>.__C__fGARCH</w>
+      <w>.__C__fGARCHSPEC</w>
+      <w>.__C__fUGARCHSPEC</w>
       <w>.__C__gchol</w>
       <w>.__C__gchol.bdsmatrix</w>
       <w>.__C__glmRespMod</w>
@@ -55,6 +59,9 @@
       <w>.__C__urca</w>
       <w>.aggregate.timeSeries</w>
       <w>.align.timeSeries</w>
+      <w>.aparchLLH.filter</w>
+      <w>.aparchLLH.internal</w>
+      <w>.aparchLLH.testing</w>
       <w>.appendList</w>
       <w>.applySeries</w>
       <w>.as.data.frame.timeSeries</w>
@@ -71,6 +78,9 @@
       <w>.description</w>
       <w>.dollar_assign</w>
       <w>.downsample</w>
+      <w>.dsged</w>
+      <w>.dsnorm</w>
+      <w>.dsstd</w>
       <w>.end.timeSeries</w>
       <w>.endpoints2</w>
       <w>.export</w>
@@ -78,9 +88,32 @@
       <w>.fapply</w>
       <w>.farg</w>
       <w>.findIndex</w>
+      <w>.garchArgsParser</w>
+      <w>.garchFit</w>
+      <w>.garchInitParameters</w>
+      <w>.garchInitSeries</w>
+      <w>.garchKappaFun</w>
+      <w>.garchLLH</w>
+      <w>.garchModelSeries</w>
+      <w>.garchNames</w>
+      <w>.garchOptimizeLLH</w>
+      <w>.garchOptimizerControl</w>
+      <w>.garchRCDAGradient</w>
+      <w>.garchRCDAHessian</w>
+      <w>.garchRlbfgsb</w>
+      <w>.garchRnlminb</w>
+      <w>.garchRnm</w>
+      <w>.garchRoptimhess</w>
+      <w>.garchSetCondDist</w>
+      <w>.garchTSHessian</w>
       <w>.garg</w>
+      <w>.gedCondDist</w>
+      <w>.gedFit</w>
       <w>.get.arglist</w>
+      <w>.getfGarchEnv</w>
+      <w>.gogarchFit</w>
       <w>.head.timeSeries</w>
+      <w>.hessian2sided</w>
       <w>.import</w>
       <w>.index</w>
       <w>.indexDate</w>
@@ -95,14 +128,17 @@
       <w>.indexweek</w>
       <w>.indexyday</w>
       <w>.indexyear</w>
+      <w>.interactiveGarchPlot</w>
       <w>.intersection.point</w>
       <w>.isOHLC</w>
       <w>.isOHLCV</w>
       <w>.lines.timeSeries</w>
       <w>.lowessSmoother</w>
       <w>.merge.timeSeries</w>
+      <w>.multGarchPlot</w>
       <w>.na.omit.timeSeries</w>
       <w>.naOmitMatrix</w>
+      <w>.normCondDist</w>
       <w>.ohlcDailyPlot</w>
       <w>.old2newRda</w>
       <w>.old2newTimeSeries</w>
@@ -144,23 +180,57 @@
       <w>.plot.timeSeries</w>
       <w>.plot.turnpointsPastecs</w>
       <w>.plotOHLC</w>
+      <w>.plot_garch_1</w>
+      <w>.plot_garch_10</w>
+      <w>.plot_garch_11</w>
+      <w>.plot_garch_12</w>
+      <w>.plot_garch_13</w>
+      <w>.plot_garch_2</w>
+      <w>.plot_garch_3</w>
+      <w>.plot_garch_4</w>
+      <w>.plot_garch_5</w>
+      <w>.plot_garch_6</w>
+      <w>.plot_garch_7</w>
+      <w>.plot_garch_8</w>
+      <w>.plot_garch_9</w>
       <w>.points.timeSeries</w>
       <w>.print.timeSeries</w>
+      <w>.psged</w>
+      <w>.psnorm</w>
+      <w>.psstd</w>
+      <w>.qqDist</w>
+      <w>.qqLine</w>
+      <w>.qsged</w>
+      <w>.qsnorm</w>
+      <w>.qsstd</w>
       <w>.rev.timeSeries</w>
       <w>.rollmax.timeSeries</w>
       <w>.rollmean.timeSeries</w>
       <w>.rollmedian.timeSeries</w>
       <w>.rollmin.timeSeries</w>
+      <w>.rsged</w>
+      <w>.rsnorm</w>
+      <w>.rsstd</w>
       <w>.sarg</w>
       <w>.scale.timeSeries</w>
       <w>.select.args</w>
       <w>.select.prefix</w>
+      <w>.setfGarchEnv</w>
+      <w>.sgedCondDist</w>
+      <w>.sgedFit</w>
       <w>.signalCounts</w>
       <w>.signalSeries</w>
       <w>.slice.run</w>
+      <w>.snigCondDist</w>
+      <w>.snormCondDist</w>
+      <w>.snormFit</w>
       <w>.sort.timeSeries</w>
       <w>.splineSmoother</w>
+      <w>.sstdCondDist</w>
+      <w>.sstdFit</w>
       <w>.start.timeSeries</w>
+      <w>.stdCondDist</w>
+      <w>.stdFit</w>
       <w>.str.timeSeries</w>
       <w>.subset.xts</w>
       <w>.subset_timeSeries</w>
@@ -170,10 +240,13 @@
       <w>.tail.timeSeries</w>
       <w>.time.timeSeries</w>
       <w>.timeSeries</w>
+      <w>.truePersistence</w>
       <w>.turnpoints2</w>
       <w>.turnpointsPastecs</w>
       <w>.turnpointsSeries</w>
       <w>.turnpointsStats</w>
+      <w>.ugarchFit</w>
+      <w>.ugarchSpec</w>
       <w>.validity_timeSeries</w>
       <w>.vcovBSenv</w>
       <w>.window.timeSeries</w>
@@ -623,6 +696,7 @@
       <w>`.__T__outlier:timeSeries`</w>
       <w>`.__T__plot:graphics`</w>
       <w>`.__T__points:graphics`</w>
+      <w>`.__T__predict:stats`</w>
       <w>`.__T__print:base`</w>
       <w>`.__T__prod:base`</w>
       <w>`.__T__profile:stats`</w>
@@ -704,6 +778,7 @@
       <w>aaply</w>
       <w>ability.cov</w>
       <w>ablrtest</w>
+      <w>absMoments</w>
       <w>acast</w>
       <w>acf</w>
       <w>acm_article</w>
@@ -1206,6 +1281,7 @@
       <w>defer_parent</w>
       <w>defmacro</w>
       <w>deframe</w>
+      <w>dem2gbp</w>
       <w>demo_spinners</w>
       <w>denmark</w>
       <w>densityplot</w>
@@ -1266,6 +1342,7 @@
       <w>detectCores</w>
       <w>detectIO</w>
       <w>dev_package_deps</w>
+      <w>dged</w>
       <w>diag</w>
       <w>diag.panel.splom</w>
       <w>diff</w>
@@ -1310,10 +1387,14 @@
       <w>drawdownsStats</w>
       <w>drop_style</w>
       <w>dsa_keygen</w>
+      <w>dsged</w>
       <w>dsigmoid</w>
+      <w>dsnorm</w>
       <w>dsscden</w>
       <w>dssden</w>
+      <w>dsstd</w>
       <w>dstable</w>
+      <w>dstd</w>
       <w>dummyDailySeries</w>
       <w>dummySeries</w>
       <w>durationSeries</w>
@@ -1369,6 +1450,7 @@
       <w>extract2</w>
       <w>extractPath</w>
       <w>eyetrack</w>
+      <w>fGarch</w>
       <w>f_capture</w>
       <w>f_env</w>
       <w>f_eval</w>
@@ -1387,6 +1469,7 @@
       <w>failwith</w>
       <w>faithful</w>
       <w>fapply</w>
+      <w>fastICA</w>
       <w>fastLm</w>
       <w>fastLmPure</w>
       <w>fclustIndex</w>
@@ -1472,11 +1555,18 @@
       <w>garch</w>
       <w>garch.control</w>
       <w>garch.sim</w>
+      <w>garchFit</w>
+      <w>garchFitControl</w>
+      <w>garchKappa</w>
+      <w>garchSim</w>
+      <w>garchSpec</w>
       <w>gastric</w>
       <w>gather_attrs</w>
       <w>gaucov</w>
       <w>gauss.quad</w>
       <w>gchol</w>
+      <w>gedFit</w>
+      <w>gedSlider</w>
       <w>get.hist.quote</w>
       <w>getActiveDocumentContext</w>
       <w>getActiveProject</w>
@@ -1629,6 +1719,8 @@
       <w>hzdcurve.sshzd</w>
       <w>hzdrate.sshzd</w>
       <w>ica</w>
+      <w>ica.R.def</w>
+      <w>ica.R.par</w>
       <w>ice.river</w>
       <w>id</w>
       <w>idata.frame</w>
@@ -2271,6 +2363,7 @@
       <w>periodogram</w>
       <w>permutations</w>
       <w>permute</w>
+      <w>pged</w>
       <w>pillar</w>
       <w>pillar_shaft</w>
       <w>pkg_has_src</w>
@@ -2310,6 +2403,7 @@
       <w>pplik</w>
       <w>ppregion</w>
       <w>precip</w>
+      <w>predict</w>
       <w>predict.LogitBoost</w>
       <w>predict.trls</w>
       <w>predict1</w>
@@ -2410,9 +2504,13 @@
       <w>ps_uids</w>
       <w>ps_username</w>
       <w>ps_users</w>
+      <w>psged</w>
+      <w>psnorm</w>
       <w>psscden</w>
       <w>pssden</w>
+      <w>psstd</w>
       <w>pstable</w>
+      <w>pstd</w>
       <w>pull</w>
       <w>punch_card</w>
       <w>punitroot</w>
@@ -2420,11 +2518,16 @@
       <w>pvec</w>
       <w>qar.sim</w>
       <w>qdiscrete</w>
+      <w>qged</w>
       <w>qq</w>
       <w>qqmath</w>
+      <w>qsged</w>
+      <w>qsnorm</w>
       <w>qsscden</w>
       <w>qssden</w>
+      <w>qsstd</w>
       <w>qstable</w>
+      <w>qstd</w>
       <w>quadmap</w>
       <w>quadprog</w>
       <w>quakes</w>
@@ -2574,6 +2677,7 @@
       <w>rfcv</w>
       <w>rfs</w>
       <w>rgb2mnsl</w>
+      <w>rged</w>
       <w>rio</w>
       <w>ripemd160</w>
       <w>rivers</w>
@@ -2620,9 +2724,13 @@
       <w>rsa_decrypt</w>
       <w>rsa_encrypt</w>
       <w>rsa_keygen</w>
+      <w>rsged</w>
+      <w>rsnorm</w>
       <w>rsos_article</w>
       <w>rss_article</w>
+      <w>rsstd</w>
       <w>rstable</w>
+      <w>rstd</w>
       <w>rstudioapi</w>
       <w>rticles</w>
       <w>rtools_path</w>
@@ -2695,6 +2803,8 @@
       <w>set_rownames</w>
       <w>set_tidy_names</w>
       <w>setup_rtools</w>
+      <w>sgedFit</w>
+      <w>sgedSlider</w>
       <w>sha</w>
       <w>sha1</w>
       <w>sha2</w>
@@ -2734,6 +2844,8 @@
       <w>smoothSpline</w>
       <w>smoothSupsmu</w>
       <w>snip.tree</w>
+      <w>snormFit</w>
+      <w>snormSlider</w>
       <w>solve.QP</w>
       <w>solve.QP.compact</w>
       <w>solveCoef</w>
@@ -2742,6 +2854,7 @@
       <w>sortColnames</w>
       <w>sourceMarkers</w>
       <w>sourcetools</w>
+      <w>sp500dge</w>
       <w>sparks</w>
       <w>spatial</w>
       <w>spec</w>
@@ -2782,6 +2895,8 @@
       <w>ssl_cert_locations</w>
       <w>ssllrm</w>
       <w>sspdsty</w>
+      <w>sstdFit</w>
+      <w>sstdSlider</w>
       <w>stableMode</w>
       <w>stabledist</w>
       <w>stackloss</w>
@@ -2803,6 +2918,8 @@
       <w>statsColnames</w>
       <w>status</w>
       <w>stdEr</w>
+      <w>stdFit</w>
+      <w>stdSlider</w>
       <w>sterling</w>
       <w>stft</w>
       <w>stogo</w>
