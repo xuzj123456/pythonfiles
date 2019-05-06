@@ -930,6 +930,7 @@
       <w>backSpline</w>
       <w>backports</w>
       <w>backsolve</w>
+      <w>backtest</w>
       <w>bacteriuria</w>
       <w>badDend</w>
       <w>banking</w>
@@ -1000,6 +1001,7 @@
       <w>bluebird</w>
       <w>bluebirdlite</w>
       <w>blurred</w>
+      <w>bmw</w>
       <w>boardings</w>
       <w>bobyqa</w>
       <w>bold</w>
@@ -1254,6 +1256,7 @@
       <w>d_ply</w>
       <w>daily2monthly</w>
       <w>daily2weekly</w>
+      <w>danish</w>
       <w>daply</w>
       <w>darker</w>
       <w>data_frame</w>
@@ -1269,6 +1272,7 @@
       <w>ddply</w>
       <w>debug_fseq</w>
       <w>debug_pipe</w>
+      <w>decluster</w>
       <w>decodeURI</w>
       <w>decodeURIComponent</w>
       <w>decrypt_envelope</w>
@@ -1343,6 +1347,8 @@
       <w>detectIO</w>
       <w>dev_package_deps</w>
       <w>dged</w>
+      <w>dgev</w>
+      <w>dgpd</w>
       <w>diag</w>
       <w>diag.panel.splom</w>
       <w>diff</w>
@@ -1410,6 +1416,7 @@
       <w>element</w>
       <w>ellipseGrob</w>
       <w>elsevier_article</w>
+      <w>emplot</w>
       <w>empty</w>
       <w>encodeURI</w>
       <w>encodeURIComponent</w>
@@ -1433,8 +1440,10 @@
       <w>eval.quoted</w>
       <w>evaluate</w>
       <w>even</w>
+      <w>evir</w>
       <w>excel_format</w>
       <w>excel_sheets</w>
+      <w>exindex</w>
       <w>expcov</w>
       <w>expect_known_display</w>
       <w>explode.s</w>
@@ -1512,6 +1521,7 @@
       <w>find_rstudio_root_file</w>
       <w>find_rtools</w>
       <w>find_testthat_root_file</w>
+      <w>findthresh</w>
       <w>fingerprint</w>
       <w>finish</w>
       <w>finland</w>
@@ -1605,6 +1615,7 @@
       <w>get_max_extent</w>
       <w>get_root_desc</w>
       <w>get_spinner</w>
+      <w>gev</w>
       <w>gh</w>
       <w>gh_first</w>
       <w>gh_last</w>
@@ -1622,6 +1633,10 @@
       <w>gnuplot</w>
       <w>gold</w>
       <w>google</w>
+      <w>gpd</w>
+      <w>gpd.q</w>
+      <w>gpd.sfall</w>
+      <w>gpdbiv</w>
       <w>green</w>
       <w>greycite</w>
       <w>grid.arrange</w>
@@ -1657,6 +1672,7 @@
       <w>gtable_width</w>
       <w>gtools</w>
       <w>guess_fo</w>
+      <w>gumbel</w>
       <w>hamming.distance</w>
       <w>hamming.window</w>
       <w>handle_cookies</w>
@@ -1707,6 +1723,7 @@
       <w>hidden</w>
       <w>highr</w>
       <w>hilight</w>
+      <w>hill</w>
       <w>histogram</w>
       <w>hmac</w>
       <w>hms</w>
@@ -1772,6 +1789,7 @@
       <w>interpNA</w>
       <w>interpSpline</w>
       <w>interpolate</w>
+      <w>interpret.gpdbiv</w>
       <w>interrupt</w>
       <w>inv.logit</w>
       <w>invalid</w>
@@ -1917,6 +1935,7 @@
       <w>lastAdd</w>
       <w>last_commit</w>
       <w>lastof</w>
+      <w>lasttradingdate</w>
       <w>later</w>
       <w>lattice</w>
       <w>lattice.getOption</w>
@@ -2068,6 +2087,7 @@
       <w>melt</w>
       <w>memoise</w>
       <w>memoize</w>
+      <w>meplot</w>
       <w>merge</w>
       <w>merge.xts</w>
       <w>merge.zoo</w>
@@ -2180,6 +2200,8 @@
       <w>ngreg.proj</w>
       <w>nhours</w>
       <w>nhtemp</w>
+      <w>nidd.annual</w>
+      <w>nidd.thresh</w>
       <w>nino</w>
       <w>nl.grad</w>
       <w>nl.jacobian</w>
@@ -2364,6 +2386,8 @@
       <w>permutations</w>
       <w>permute</w>
       <w>pged</w>
+      <w>pgev</w>
+      <w>pgpd</w>
       <w>pillar</w>
       <w>pillar_shaft</w>
       <w>pkg_has_src</w>
@@ -2376,6 +2400,10 @@
       <w>plos_article</w>
       <w>plot</w>
       <w>plot.PBmodcomp</w>
+      <w>plot.gev</w>
+      <w>plot.gpd</w>
+      <w>plot.gpdbiv</w>
+      <w>plot.potd</w>
       <w>plot.tree.sequence</w>
       <w>plot.trls</w>
       <w>plot.xts</w>
@@ -2397,6 +2425,7 @@
       <w>polySpline</w>
       <w>polygon_regular</w>
       <w>portfolio.optim</w>
+      <w>pot</w>
       <w>pp.test</w>
       <w>ppgetregion</w>
       <w>ppinit</w>
@@ -2519,6 +2548,9 @@
       <w>qar.sim</w>
       <w>qdiscrete</w>
       <w>qged</w>
+      <w>qgev</w>
+      <w>qgpd</w>
+      <w>qplot</w>
       <w>qq</w>
       <w>qqmath</w>
       <w>qsged</w>
@@ -2531,6 +2563,7 @@
       <w>quadmap</w>
       <w>quadprog</w>
       <w>quakes</w>
+      <w>quant</w>
       <w>quantcut</w>
       <w>quantile</w>
       <w>quantile.zoo</w>
@@ -2630,6 +2663,7 @@
       <w>recast</w>
       <w>reclass</w>
       <w>record_as_cited</w>
+      <w>records</w>
       <w>rectangle.window</w>
       <w>red</w>
       <w>reduce.nn</w>
@@ -2678,10 +2712,14 @@
       <w>rfs</w>
       <w>rgb2mnsl</w>
       <w>rged</w>
+      <w>rgev</w>
+      <w>rgpd</w>
       <w>rio</w>
       <w>ripemd160</w>
+      <w>riskmeasures</w>
       <w>rivers</w>
       <w>rjournal_article</w>
+      <w>rlevel.gev</w>
       <w>rlply</w>
       <w>rm_file</w>
       <w>rmnorm</w>
@@ -2812,6 +2850,7 @@
       <w>sha256</w>
       <w>sha384</w>
       <w>sha512</w>
+      <w>shape</w>
       <w>sharpe</w>
       <w>shift.time</w>
       <w>shingle</w>
@@ -2824,6 +2863,7 @@
       <w>showQuestion</w>
       <w>showTree</w>
       <w>show_ansi_colors</w>
+      <w>siemens</w>
       <w>sigmoid</w>
       <w>signals</w>
       <w>signature_create</w>
@@ -2854,6 +2894,7 @@
       <w>sortColnames</w>
       <w>sourceMarkers</w>
       <w>sourcetools</w>
+      <w>sp.raw</w>
       <w>sp500dge</w>
       <w>sparks</w>
       <w>spatial</w>
@@ -2880,6 +2921,7 @@
       <w>spreads</w>
       <w>springer_article</w>
       <w>sprint</w>
+      <w>spto87</w>
       <w>squeeze</w>
       <w>ssanova</w>
       <w>ssanova0</w>
@@ -3222,6 +3264,7 @@
       <w>tagged_na</w>
       <w>tags</w>
       <w>tail</w>
+      <w>tailplot</w>
       <w>take</w>
       <w>taolu</w>
       <w>tar</w>
