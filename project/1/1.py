@@ -8,8 +8,8 @@ import os
 capital = 20000.0
 fee = 5.0
 slippage = 5.0
-size=1
-remain_money=capital
+size = 1
+remain_money = capital
 total_money = [remain_money]
 trade_option = pd.DataFrame()
 
@@ -23,7 +23,7 @@ def get_vacation_dates():
     tt = pd.Series(tt)
     return tt
 
-def add_open(num,call_name,put_name):
+def add_open(num, call_name, put_name):
     global trade_option
     # 正在开仓中的合约
     if trade_option.empty:
@@ -35,7 +35,7 @@ def add_open(num,call_name,put_name):
             trade_option = trade_option.append(t, ignore_index=True)
     return trade_option
 
-def straddle(date,posit,call_name,put_name):#资金处理
+def straddle(date, posit, call_name, put_name):#资金处理
     global trade_option
     call_close = etf_close[etf_close.date==date][call_name].values[0]
     put_close = etf_close[etf_close.date==date][put_name].values[0]
