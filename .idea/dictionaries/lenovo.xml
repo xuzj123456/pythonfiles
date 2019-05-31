@@ -954,6 +954,7 @@
       <w>bdsmatrix.reconcile</w>
       <w>beersales</w>
       <w>beets</w>
+      <w>befexp</w>
       <w>best.nnet</w>
       <w>best.randomForest</w>
       <w>best.rpart</w>
@@ -1934,6 +1935,7 @@
       <w>last2</w>
       <w>lastAdd</w>
       <w>last_commit</w>
+      <w>lastdate</w>
       <w>lastof</w>
       <w>lasttradingdate</w>
       <w>later</w>

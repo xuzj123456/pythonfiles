@@ -1,6 +1,41 @@
 # coding=utf-8
 
-urls_1 = []
+urls_1 = ['https://thumbzilla.icu/video/ph5ce4d3dd8d0ed/femdom-party-licking-pretty-mistress-and-her-friends-feet',
+          'https://thumbzilla.icu/video/ph5cebf0f5dc37c/chinese-femdom-licking-two-milf-mistress-feet-foot-worship',
+          'https://thumbzilla.icu/video/ph5ce382972641b/chinese-femdom-foot-slave-serving-two-mistress',
+          'https://thumbzilla.icu/video/ph5ce23649b7965/licking-chinese-teen-student-mistress-white-stocks-feet',
+          'https://thumbzilla.icu/video/ph5cd0e9e5821ec/%25E6%25A0%2596%25E5%25BF%2583%25E4%25B9%258B%25E6%25A0%2588pink-socks-trampling',
+          'https://thumbzilla.icu/video/ph5cded455aa47c/chinese-trample',
+          'https://thumbzilla.icu/video/ph5b60956c519ee/chinese-queen-foot-slave',
+          'https://thumbzilla.icu/video/ph5cd4e424021d1/chinese-trample',
+          'https://thumbzilla.icu/video/ph5a8b7fec42368/%25E5%259B%259B%25E5%25B7%259D%25E4%25BA%259A%25E5%2585%25AE%25E8%25B0%2583%25E6%2595%2599%25E5%25B0%258F%25E5%2588%259A',
+          'https://thumbzilla.icu/video/ph5c6769b128dd8/chinese-trampling',
+          'https://thumbzilla.icu/video/ph5ce54985eb2b1/chinese-femdom%25E6%25AD%2586%25E7%258E%25A5%25E6%25B4%259B%25E8%258A%25B8%25E5%258F%258Cs%25E6%25B5%25B4%25E7%25BC%25B8%25E7%2588%2586%25E8%25B8%25A9%25E7%2594%25B7m-%25E8%2588%2594%25E8%2584%259A',
+          'https://thumbzilla.icu/video/ph5ce382972641b/chinese-femdom-foot-slave-serving-two-mistress',
+          'https://thumbzilla.icu/video/ph5cdfd713efc54/licking-my-pretty-pantyhose-mistress-feet-foot-fetish',
+          'https://thumbzilla.icu/video/ph5ba5649d3b18e/%25E5%25A5%25B3%25E7%258E%258Bs%25E7%2599%25BD%25E5%25AF%258C%25E7%25BE%258E%25E6%2589%25BE%25E9%25B8%25AD%25E5%25AF%25BB%25E4%25B9%2590-%25E4%25B8%258B',
+          'https://thumbzilla.icu/video/ph5cebf0e5b011d/chinese-femdom-foot-slave-licking-pretty-mistress-feet-in-parking-lot-p1',
+          'https://thumbzilla.icu/video/ph5cdfd713efc54/licking-my-pretty-pantyhose-mistress-feet-foot-fetish',
+          'https://thumbzilla.icu/video/ph5cebf0f6231d0/chinese-femdom-lezdom-foot-slave-serving-mistress-and-her-lez-slave',
+          'https://thumbzilla.icu/video/ph5ced394a2c76c/chinese-femdom-pretty-stockings-mistress-trampling-face-pov-1',
+          'https://thumbzilla.icu/video/ph5ced394a10878/chinese-femdom-pretty-stockings-mistress-feet-licking-pov-2',
+          'https://thumbzilla.icu/video/ph5cee956fd49fc/chinese-femdom-serving-two-mistress-foot-fetish-1',
+          'https://thumbzilla.icu/video/ph5cee956fd4923/chinese-femdom-serving-two-mistress-foot-fetish-2',
+          'https://thumbzilla.icu/video/ph5cee956fa994f/chinese-femdom-pretty-mistress-trampling-feet-licking-1',
+          'https://thumbzilla.icu/video/ph5cee956f80f19/chinese-femdom-pretty-mistress-trampling-feet-licking-2',
+          'https://thumbzilla.icu/video/ph5cee956fa2849/chinese-femdom-mistress-punish-thief-by-feet-foot-worship',
+          'https://thumbzilla.icu/video/ph5cee956f76607/chinese-femdom-two-mistress-punish-foot-slave-1',
+          'https://thumbzilla.icu/video/ph5cee956f774f3/chinese-femdom-two-mistress-punish-foot-slave-2',
+          'https://thumbzilla.icu/video/ph5cee956f47ed7/chinese-femdom-two-mistress-punish-foot-slave-3',
+          'https://thumbzilla.icu/video/ph5cee956f470a2/chinese-femdom-two-mistress-punish-foot-slave-4',
+          'https://thumbzilla.icu/video/ph5cdfd7137559d/couple-foot-slaves-serving-two-mistress',
+          'https://thumbzilla.icu/video/ph5ca5808063676/chinese-foot-worship-movie-theater-foot-worship-live',
+          'https://thumbzilla.icu/video/ph57dab56c7aa81/chinese-mistress-pinches-the-nipples-of-2-slaves',
+          'https://thumbzilla.icu/video/ph5c22e86d896ab/chinese-femdom-earpulling',
+          'https://thumbzilla.icu/video/ph5ca58c8e3d107/chinese-foot-worship-2-drunk-babe-foot-worship-live',
+          'https://thumbzilla.icu/video/ph5bc18184d2f14/%25E5%2588%259D%25E6%25AC%25A1%25E6%258E%25A5%25E8%25A7%25B8%25E6%2580%25A7%25E7%258E%25A9%25E5%2585%25B7-chinese-foot-worship',
+          'https://thumbzilla.icu/video/ph59c379e4efd4b/the-maids-comfort-food-sex-scene-servemen-com',
+          'https://thumbzilla.icu/video/ph5ccac128a9204/korean-%25ED%2595%259C%25EA%25B5%25AD%25EC%2595%25BC%25EB%258F%2599-%25EC%259B%2590%25EC%25A0%2595%25EB%2585%2580-%25EB%25A0%2588%25EC%25A0%2584%25EB%2593%259C%25ED%258E%25B8']
 
 urls_2 = []
 
