@@ -1,4 +1,5 @@
 # coding=utf-8
+# coding=utf-8
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -49,22 +50,22 @@ class S:
         if posit == "buy":  # 买平值卖虚值
             num = size
             self.add_open(num, at_name, out_name)
-            print(str(date) + 'buy: '+str(at_name)+' and sell'+str(out_name))
+#            print(str(date) + 'buy: '+str(at_name)+' and sell'+str(out_name))
             money_chg = -10000.0 * num * at_close + 15000.0 * num * out_close
         elif posit == "sell":  # 买虚值卖平值
             num = -size
             self.add_open(num, at_name, out_name)
-            print(str(date) + 'sell: '+str(at_name)+' and buy'+str(out_name))
+#            print(str(date) + 'sell: '+str(at_name)+' and buy'+str(out_name))
             money_chg = 10000.0 * num * at_close - 15000.0 * num * out_close
         elif posit == "close buy":
             num = self.trade_option[self.trade_option['at'] == at_name]['size'].values[0].tolist()
             self.trade_option = self.trade_option[self.trade_option['at'] != at_name]
-            print(str(date) + 'close buy: '+str(at_name)+' and sell'+str(out_name))
+#            print(str(date) + 'close buy: '+str(at_name)+' and sell'+str(out_name))
             money_chg = 10000.0 * num * at_close - 15000.0 * num * out_close
         elif posit == "close sell":
             num = self.trade_option[self.trade_option['at'] == at_name]['size'].values[0].tolist()
             self.trade_option = self.trade_option[self.trade_option['at'] != at_name]
-            print(str(date) + 'close sell: ' + str(at_name) + ' and buy' + str(out_name))
+#            print(str(date) + 'close sell: ' + str(at_name) + ' and buy' + str(out_name))
             money_chg = -10000.0 * num * at_close + 15000.0 * num * out_close
 
         return money_chg - 2.5 * size * fee - 2.5 * size * slippage / 2.0
@@ -221,7 +222,7 @@ class S:
 
         self.DAY_MAX = len(self.total_money) - 300
 
-        self.cacul_performance()
+#        self.cacul_performance()
 
 if __name__ == '__main__':
     start = time()
@@ -232,16 +233,39 @@ if __name__ == '__main__':
     lastdate = pd.read_excel(f_path, "ETF_option_lasttradingdate")
     etf_option_name = pd.read_excel(f_path, "at_money_name")
 
-    s = S()
+    # s = S()
+    #
+    # (s.up_buy, s.down_close_buy, s.up_close_sell, s.down_sell) = (75, 65, 35, 25)  # 上下界
+    #
+    # s.option_type_1 = "out"  # at/out，at为平值期权和虚值1期权，out为虚值1与虚值2期权
+    # s.option_type_2 = "put"  # call/put，进行操作的期权
+    # s.befexp = "T"  # 是否在到期日前d天内不交易
+    # s.d = 7
+    #
+    # s.run()
 
-    (s.up_buy, s.down_close_buy, s.up_close_sell, s.down_sell) = (60, 55, 35, 30)  # 上下界
+    max_total=[0]
+    s=S()
+    for i1 in range(60, 100, 5):
+        for i2 in range(55, i1, 5):
+            for i4 in range(5, 45, 5):
+                for i3 in range(i4+5, 50, 5):
+                    for i5 in ['at']:
+                        for i6 in ['call']:
+                            s.__init__()
+                            s.befexp = "T"
+                            s.d = 7
 
-    s.option_type_1 = "at"  # at/out，at为平值期权和虚值1期权，out为虚值1与虚值2期权
-    s.option_type_2 = "call"  # call/put，进行操作的期权
-    s.befexp = "T"  # 是否在到期日前d天内不交易
-    s.d = 7
+                            (s.up_buy, s.down_close_buy, s.up_close_sell, s.down_sell) = (i1, i2, i3, i4)
+                            s.option_type_1 = i5
+                            s.option_type_2 = i6
+                            s.run()
+                            if s.total_money[-1] >= max_total[-1]:
+                                max_total = s.total_money
+                                config = [i1, i2, i3, i4, i5, i6]
 
-    s.run()
+    print(max_total)
+    print(config)
 
     end = time()
     print('total time is %.6f seconds' % (end - start))
