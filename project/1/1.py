@@ -3,6 +3,7 @@
 import pandas as pd
 import numpy as np
 import os
+import matplotlib.pyplot as plt
 
 # configuration
 capital = 20000.0
@@ -89,6 +90,8 @@ def handle(dates):
         remain_money += change
         total_money.append(remain_money)
 
+        trading_dates.append(dates[0])
+        trading_dates.append(dates[2])
         trading_time.append(2)
         daily_rtn.append((total_money[-1]-total_money[-2])/total_money[-2])
 
@@ -118,13 +121,15 @@ def handle(dates):
         remain_money += change
         total_money.append(remain_money)
 
+        trading_dates.append(dates[2])
+        trading_dates.append(dates[-1])
         trading_time.append(5)
         daily_rtn.append((total_money[-1] - total_money[-2]) / (total_money[-2]*4))
 
 def performance():
     backtest_rtn = total_money[-1] / capital - 1
 
-    DAY_len = sum(trading_time)
+    DAY_len = len(trading_dates)
     annual_rtn = backtest_rtn * 252 / DAY_len
 
     annual_vol = np.array(daily_rtn).std() * np.sqrt(252.0)
@@ -143,6 +148,14 @@ def performance():
     print('Sharpe Ratio: %.4f' % sharpe_ratio)
     print('Maximal Drawdown: %.2f%%' % (max_drawdown_ratio * 100.0))
 
+    plt.figure(figsize=(8, 5))
+    plt.plot(t_list, m)
+    plt.xlabel('Date')
+    plt.ylabel('Money')
+    plt.title('Money Curve')
+    plt.grid(True)
+    plt.show()
+
 
 if __name__ == '__main__':
     f_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '50etf2018_9_20.xlsx')
@@ -154,11 +167,24 @@ if __name__ == '__main__':
     t_list = etf_ivx['date']
     vaca_dates = get_vacation_dates()
 
-    trading_time = []       # list，每次持仓时间
+    trading_dates = []       # list，每次持仓时间
     daily_rtn = []
+    trading_time = []
 
     for date in vaca_dates:
         dates = [ t_list[t_list.tolist().index(date)+i] for i in range(-2, 5) ]     # 节假日前两个与后五个交易日
         handle(dates)
+
+    money = total_money.copy()
+    m = []
+    m.append(capital)
+
+    for t in t_list:
+        if t in trading_dates:
+            m.append(money.pop(0))
+        else:
+            m.append(m[-1])
+
+    m.pop(0)
 
     performance()
