@@ -12,6 +12,7 @@
       <option name="ignoredIdentifiers">
         <list>
           <option value="re" />
+          <option value="Configuration" />
         </list>
       </option>
     </inspection_tool>

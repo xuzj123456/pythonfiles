@@ -39,7 +39,7 @@ def run_func(url):
         download_func(url)
         print('url %s has done successfully.' % url)
     except Exception as e:
-        print('*********  url %s failed   *************' % url)
+        print('<*********  url %s failed   *************' % url)
         print(e)
         failed_flag = True
     return failed_flag
@@ -63,14 +63,14 @@ def run(urls):
     clock.Time()
     results = [r.get() for r in results]
     print('共失败%d次' % collections.Counter(results)[True])    # 每个失败都将返回一个True,统计True的个数
-# 主运行函数
+# 主运行函数0
 
-root = r'F:\new'    # 文件保存位置
+root = r'E:\new'    # 文件保存位置
 
 headers = {
-    'upgrade-insecure-requests': '1',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) '
-                  'Chrome/68.0.3440.106 Safari/537.36'
+    'user-agent': 'Mozilla/5.0 ,(Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) '
+                  'Chrome/68.0.3440.106 Safari/537.36',
+    'Origin': 'https://www.thumbzilla.com',
 }     # requests headers
 
 if __name__ == '__main__':
