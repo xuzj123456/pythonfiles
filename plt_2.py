@@ -8,7 +8,7 @@ from matplotlib.font_manager import FontProperties
 # plt.rcParams['axes.unicode_minus']=False  #用来正常显示负号
 
 
-file = r'C:\Users\lenovo\Desktop\cj intern\食品饮料.csv'
+file = r'cj intern\食品饮料.csv'
 df = pd.read_csv(file, engine = 'python', index_col=0)
 t = [df.index[i] for i in range(0, len(df.index), 6)]
 

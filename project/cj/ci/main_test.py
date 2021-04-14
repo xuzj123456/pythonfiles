@@ -24,7 +24,8 @@ def year_add2month(pf):
                 item = pf[i] - pf[i - 1]
         list_new.append(item)
     print(list_new)
-    return pd.Series(list_new, pf.index)
+    return pd.Series\
+        (list_new, pf.index)
 
 
 # 累计值转当月值
