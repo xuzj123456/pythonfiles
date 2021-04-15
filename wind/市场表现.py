@@ -1,35 +1,11 @@
 # coding=utf-8
-from WindPy import w
-import time
-import datetime
-import pandas as pd
-import pymysql
 from configuration import *
 
-try:
-    con = pymysql.connect(host=host,
-                         port=port,
-                         user=user,
-                         passwd=passwd,
-                         db=db,
-                         charset=charset)
-except Exception as e:
-    print('数据库连接失败，3s后重试')
-    print(e)
-    time.sleep(3)
-# 创建游标
-cursor = con.cursor()
 
-w.start()
-w.isconnected()
-
-t = datetime.date.today()
-result = w.edb("G8324475,G8324488", "2015-01-01", t,"Fill=blank")
+result = w.edb(list_3_code, "2015-01-01", t,"Fill=blank")
 df = pd.DataFrame(result.Data, columns=result.Times).transpose()
 df.fillna(0, inplace=True)
-df.set_axis(['上证所:市场总成交金额',
-             '深交所:市场总成交金额'],
-            axis='columns', inplace=True)
+df.set_axis(list_3,axis='columns', inplace=True)
 df['上证成交变化']=df.iloc[:,0].diff()
 df['深交成交变化']=df.iloc[:,1].diff()
 df.dropna(inplace=True)

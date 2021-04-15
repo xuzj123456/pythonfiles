@@ -1,36 +1,12 @@
 # coding=utf-8
-from WindPy import w
-import time
-import datetime
-import pandas as pd
-import pymysql
 from configuration import *
 
-try:
-    con = pymysql.connect(host=host,
-                         port=port,
-                         user=user,
-                         passwd=passwd,
-                         db=db,
-                         charset=charset)
-except Exception as e:
-    print('数据库连接失败，3s后重试')
-    print(e)
-    time.sleep(3)
-# 创建游标
-cursor = con.cursor()
 
-w.start()
-w.isconnected()
-
-t = datetime.date.today()
-result = w.edb("M0329501,M0329505,M0329497,M0329499,M0075987,M0075988,M0075989",
+result = w.edb(list_1_code,
                "2015-01-01", t, "Fill=blank")
 df = pd.DataFrame(result.Data, columns=result.Times).transpose()
 df.fillna(0, inplace=True)
-df.set_axis(['沪市港股通:当日资金净流入(人民币)', '深市港股通:当日资金净流入(人民币)',
-             '沪股通:当日资金净流入(人民币)', '深股通:当日资金净流入(人民币)', '融资买入额',
-             '融券卖出额','融资融券交易金额'],
+df.set_axis(list_1,
             axis='columns', inplace=True)
 
 def handle_sql(sql):
