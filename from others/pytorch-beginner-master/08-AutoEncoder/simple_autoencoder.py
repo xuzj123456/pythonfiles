@@ -78,7 +78,7 @@ for epoch in range(num_epochs):
     print('epoch [{}/{}], loss:{:.4f}'
           .format(epoch + 1, num_epochs, loss.data[0]))
     if epoch % 10 == 0:
-        pic = to_img(output.cpu().data)
+        pic = to_img(output.cpu().data1)
         save_image(pic, './mlp_img/image_{}.png'.format(epoch))
 
 torch.save(model.state_dict(), './sim_autoencoder.pth')

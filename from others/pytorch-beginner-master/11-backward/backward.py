@@ -12,9 +12,9 @@ print('=====simple gradient======')
 print('input')
 print(a.data)
 print('compute result is')
-print(out.data[0])
+print(out.data1[0])
 print('input gradients are')
-print(a.grad.data)
+print(a.grad.data1)
 
 # backward on non-scalar output
 m = v(t.FloatTensor([[2, 3]]), requires_grad=True)
@@ -27,19 +27,19 @@ print('=====non scalar output======')
 print('input')
 print(m.data)
 print('input gradients are')
-print(m.grad.data)
+print(m.grad.data1)
 
 # jacobian
 j = t.zeros(2 ,2)
 k = v(t.zeros(1, 2))
-m.grad.data.zero_()
+m.grad.data1.zero_()
 k[0, 0] = m[0, 0] ** 2 + 3 * m[0 ,1]
 k[0, 1] = m[0, 1] ** 2 + 2 * m[0, 0]
 k.backward(t.FloatTensor([[1, 0]]), retain_variables=True)
-j[:, 0] = m.grad.data
-m.grad.data.zero_()
+j[:, 0] = m.grad.data1
+m.grad.data1.zero_()
 k.backward(t.FloatTensor([[0, 1]]))
-j[:, 1] = m.grad.data
+j[:, 1] = m.grad.data1
 print('jacobian matrix is')
 print(j)
 
@@ -51,10 +51,10 @@ y = v(t.FloatTensor([[1, 2], [3, 4]]))
 z = t.mm(x, y)
 jacobian = t.zeros((2, 2))
 z.backward(t.FloatTensor([[1, 0]]), retain_variables=True)  # dz1/dx1, dz1/dx2
-jacobian[:, 0] = x.grad.data
-x.grad.data.zero_()
+jacobian[:, 0] = x.grad.data1
+x.grad.data1.zero_()
 z.backward(t.FloatTensor([[0, 1]]))  # dz2/dx1, dz2/dx2
-jacobian[:, 1] = x.grad.data
+jacobian[:, 1] = x.grad.data1
 print('=========jacobian========')
 print('x')
 print(x.data)

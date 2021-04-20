@@ -83,7 +83,7 @@ def test_page_load_javascript():
     bar = _create_bar()
     line = _create_line()
     content = Page().add(bar, line).load_javascript()
-    assert_equal("", content.data)
+    assert_equal("", content.data1)
     assert_equal(["https://assets.pyecharts.org/assets/echarts.min.js"], content.lib)
 
 

@@ -1,21 +1,15 @@
 # coding=utf-8
 from configuration import *
 
-table_name = '指数_日'
+table_name = '宏观_月'
 
-max_date = engine.execute("SELECT max(日期) FROM {0};".format(table_name)).fetchall()[0][0]
-if not max_date == None:
-    start_date = w.tdaysoffset(-1, max_date).Data[0][0]
+list_m = ['上证所:A股账户新增开户数:合计', '消费者信心指数(月)', '投资者信心指数:总指数']
+list_m_code = "M0010401,M0012303,M5452815"
 
-# 指数_日
-list_2 = ['换手率:上证综合指数', '换手率:深证成份指数',
-             '换手率:创业板指数','换手率:上证50指数','换手率:沪深300指数','换手率:中证500指数']
-list_2_code = "M0331169,M0331175,M0331181,M0331174,M0331172,M0331184"
-
-result = w.edb(list_2_code, start_date, today_date, "Fill=blank")
+result = w.edb(list_m_code, start_date, today_date, "Fill=blank")
 df = pd.DataFrame(result.Data, columns=result.Times).transpose()
 df.dropna(inplace=True)
-df.set_axis(list_2,axis='columns', inplace=True)
+df.set_axis(list_m, axis='columns', inplace=True)
 df.index.name = '日期'
 
 # 首次运行创建表运行：

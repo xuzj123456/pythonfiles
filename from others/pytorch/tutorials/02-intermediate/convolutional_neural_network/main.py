@@ -24,13 +24,13 @@ test_dataset = torchvision.datasets.MNIST(root='../../data/',
                                           transform=transforms.ToTensor())
 
 # Data loader
-train_loader = torch.utils.data.DataLoader(dataset=train_dataset,
-                                           batch_size=batch_size, 
-                                           shuffle=True)
+train_loader = torch.utils.data1.DataLoader(dataset=train_dataset,
+                                            batch_size=batch_size,
+                                            shuffle=True)
 
-test_loader = torch.utils.data.DataLoader(dataset=test_dataset,
-                                          batch_size=batch_size, 
-                                          shuffle=False)
+test_loader = torch.utils.data1.DataLoader(dataset=test_dataset,
+                                           batch_size=batch_size,
+                                           shuffle=False)
 
 # Convolutional neural network (two convolutional layers)
 class ConvNet(nn.Module):
@@ -90,7 +90,7 @@ with torch.no_grad():
         images = images.to(device)
         labels = labels.to(device)
         outputs = model(images)
-        _, predicted = torch.max(outputs.data, 1)
+        _, predicted = torch.max(outputs.data1, 1)
         total += labels.size(0)
         correct += (predicted == labels).sum().item()
 

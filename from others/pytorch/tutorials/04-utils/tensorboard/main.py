@@ -15,9 +15,9 @@ dataset = torchvision.datasets.MNIST(root='../../data',
                                      download=True)
 
 # Data loader
-data_loader = torch.utils.data.DataLoader(dataset=dataset, 
-                                          batch_size=100, 
-                                          shuffle=True)
+data_loader = torch.utils.data1.DataLoader(dataset=dataset,
+                                           batch_size=100,
+                                           shuffle=True)
 
 
 # Fully connected neural network with one hidden layer

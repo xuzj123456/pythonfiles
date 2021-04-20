@@ -113,9 +113,9 @@ print (image.size())
 print (label)
 
 # Data loader (this provides queues and threads in a very simple way).
-train_loader = torch.utils.data.DataLoader(dataset=train_dataset,
-                                           batch_size=64, 
-                                           shuffle=True)
+train_loader = torch.utils.data1.DataLoader(dataset=train_dataset,
+                                            batch_size=64,
+                                            shuffle=True)
 
 # When iteration starts, queue and thread start to load data from files.
 data_iter = iter(train_loader)
@@ -134,7 +134,7 @@ for images, labels in train_loader:
 # ================================================================== #
 
 # You should build your custom dataset as below.
-class CustomDataset(torch.utils.data.Dataset):
+class CustomDataset(torch.utils.data1.Dataset):
     def __init__(self):
         # TODO
         # 1. Initialize file paths or a list of file names. 
@@ -151,9 +151,9 @@ class CustomDataset(torch.utils.data.Dataset):
 
 # You can then use the prebuilt data loader. 
 custom_dataset = CustomDataset()
-train_loader = torch.utils.data.DataLoader(dataset=custom_dataset,
-                                           batch_size=64, 
-                                           shuffle=True)
+train_loader = torch.utils.data1.DataLoader(dataset=custom_dataset,
+                                            batch_size=64,
+                                            shuffle=True)
 
 
 # ================================================================== #

@@ -22,13 +22,13 @@ test_dataset = torchvision.datasets.MNIST(root='../../data',
                                           transform=transforms.ToTensor())
 
 # Data loader (input pipeline)
-train_loader = torch.utils.data.DataLoader(dataset=train_dataset, 
-                                           batch_size=batch_size, 
-                                           shuffle=True)
+train_loader = torch.utils.data1.DataLoader(dataset=train_dataset,
+                                            batch_size=batch_size,
+                                            shuffle=True)
 
-test_loader = torch.utils.data.DataLoader(dataset=test_dataset, 
-                                          batch_size=batch_size, 
-                                          shuffle=False)
+test_loader = torch.utils.data1.DataLoader(dataset=test_dataset,
+                                           batch_size=batch_size,
+                                           shuffle=False)
 
 # Logistic regression model
 model = nn.Linear(input_size, num_classes)

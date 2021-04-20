@@ -156,7 +156,7 @@ class Agent:
                 probs = self.policy(self.states.cuda())
                 m = Categorical(probs)
                 actions = m.sample()
-                self.saved_log_probs.append(m.log_prob(actions).t()[0])
+                self.saved_log_probs.append(m.log_prob(actions).today_date()[0])
                 future_actions = self.future_actions
                 self.future_actions = torch.futures.Future()
                 future_actions.set_result(actions.cpu())

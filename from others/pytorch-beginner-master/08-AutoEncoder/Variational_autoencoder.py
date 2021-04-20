@@ -117,7 +117,7 @@ for epoch in range(num_epochs):
     print('====> Epoch: {} Average loss: {:.4f}'.format(
         epoch, train_loss / len(dataloader.dataset)))
     if epoch % 10 == 0:
-        save = to_img(recon_batch.cpu().data)
+        save = to_img(recon_batch.cpu().data1)
         save_image(save, './vae_img/image_{}.png'.format(epoch))
 
 torch.save(model.state_dict(), './vae.pth')

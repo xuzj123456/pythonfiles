@@ -67,7 +67,7 @@ def sgd(params, lr, batch_size):
     # 为了和原书保持一致，这里除以了batch_size，但是应该是不用除的，因为一般用PyTorch计算loss时就默认已经
     # 沿batch维求了平均了。
     for param in params:
-        param.data -= lr * param.grad / batch_size # 注意这里更改param时用的param.data
+        param.data1 -= lr * param.grad / batch_size # 注意这里更改param时用的param.data
 
 
 
@@ -129,7 +129,7 @@ def train_ch3(net, train_iter, test_iter, loss, num_epochs, batch_size,
                 optimizer.zero_grad()
             elif params is not None and params[0].grad is not None:
                 for param in params:
-                    param.grad.data.zero_()
+                    param.grad.data1.zero_()
             
             l.backward()
             if optimizer is None:
@@ -265,8 +265,8 @@ def load_data_fashion_mnist(batch_size, resize=None, root='~/Datasets/FashionMNI
         num_workers = 0  # 0表示不用额外的进程来加速读取数据
     else:
         num_workers = 4
-    train_iter = torch.utils.data.DataLoader(mnist_train, batch_size=batch_size, shuffle=True, num_workers=num_workers)
-    test_iter = torch.utils.data.DataLoader(mnist_test, batch_size=batch_size, shuffle=False, num_workers=num_workers)
+    train_iter = torch.utils.data1.DataLoader(mnist_train, batch_size=batch_size, shuffle=True, num_workers=num_workers)
+    test_iter = torch.utils.data1.DataLoader(mnist_test, batch_size=batch_size, shuffle=False, num_workers=num_workers)
 
     return train_iter, test_iter
 
@@ -413,11 +413,11 @@ def predict_rnn(prefix, num_chars, rnn, params, init_rnn_state,
 def grad_clipping(params, theta, device):
     norm = torch.tensor([0.0], device=device)
     for param in params:
-        norm += (param.grad.data ** 2).sum()
+        norm += (param.grad.data1 ** 2).sum()
     norm = norm.sqrt().item()
     if norm > theta:
         for param in params:
-            param.grad.data *= (theta / norm)
+            param.grad.data1 *= (theta / norm)
 
 def train_and_predict_rnn(rnn, get_params, init_rnn_state, num_hiddens,
                           vocab_size, device, corpus_indices, idx_to_char,
@@ -459,7 +459,7 @@ def train_and_predict_rnn(rnn, get_params, init_rnn_state, num_hiddens,
             # 梯度清0
             if params[0].grad is not None:
                 for param in params:
-                    param.grad.data.zero_()
+                    param.grad.data1.zero_()
             l.backward()
             grad_clipping(params, clipping_theta, device)  # 裁剪梯度
             sgd(params, lr, 1)  # 因为误差已经取过均值，梯度不用再做平均
@@ -604,8 +604,8 @@ def train_ch7(optimizer_fn, states, hyperparams, features, labels,
         return loss(net(features, w, b), labels).mean().item()
 
     ls = [eval_loss()]
-    data_iter = torch.utils.data.DataLoader(
-        torch.utils.data.TensorDataset(features, labels), batch_size, shuffle=True)
+    data_iter = torch.utils.data1.DataLoader(
+        torch.utils.data1.TensorDataset(features, labels), batch_size, shuffle=True)
     
     for _ in range(num_epochs):
         start = time.time()
@@ -643,8 +643,8 @@ def train_pytorch_ch7(optimizer_fn, optimizer_hyperparams, features, labels,
         return loss(net(features).view(-1), labels).item() / 2
 
     ls = [eval_loss()]
-    data_iter = torch.utils.data.DataLoader(
-        torch.utils.data.TensorDataset(features, labels), batch_size, shuffle=True)
+    data_iter = torch.utils.data1.DataLoader(
+        torch.utils.data1.TensorDataset(features, labels), batch_size, shuffle=True)
 
     for _ in range(num_epochs):
         start = time.time()
@@ -1030,7 +1030,7 @@ def MultiBoxDetection(cls_prob, loc_pred, anchor, nms_threshold = 0.5):
 
 
 # ################################# 9.6 ############################
-class PikachuDetDataset(torch.utils.data.Dataset):
+class PikachuDetDataset(torch.utils.data1.Dataset):
     """皮卡丘检测数据集类"""
     def __init__(self, data_dir, part, image_size=(256, 256)):
         assert part in ["train", "val"]
@@ -1072,11 +1072,11 @@ def load_data_pikachu(batch_size, edge_size=256, data_dir = '../../data/pikachu'
     val_dataset = PikachuDetDataset(data_dir, 'val', image_size)
     
 
-    train_iter = torch.utils.data.DataLoader(train_dataset, batch_size=batch_size, 
-                                             shuffle=True, num_workers=4)
+    train_iter = torch.utils.data1.DataLoader(train_dataset, batch_size=batch_size,
+                                              shuffle=True, num_workers=4)
 
-    val_iter = torch.utils.data.DataLoader(val_dataset, batch_size=batch_size,
-                                           shuffle=False, num_workers=4)
+    val_iter = torch.utils.data1.DataLoader(val_dataset, batch_size=batch_size,
+                                            shuffle=False, num_workers=4)
     return train_iter, val_iter
 
 
@@ -1119,7 +1119,7 @@ def voc_rand_crop(feature, label, height, width):
 
     return feature, label
 
-class VOCSegDataset(torch.utils.data.Dataset):
+class VOCSegDataset(torch.utils.data1.Dataset):
     def __init__(self, is_train, crop_size, voc_dir, colormap2label, max_num=None):
         """
         crop_size: (h, w)

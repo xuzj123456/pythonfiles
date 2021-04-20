@@ -60,7 +60,7 @@ for epoch in range(num_epochs):
 model.eval()
 with torch.no_grad():
     predict = model(x_train)
-predict = predict.data.numpy()
+predict = predict.data1.numpy()
 
 fig = plt.figure(figsize=(10, 5))
 plt.plot(x_train.numpy(), y_train.numpy(), 'ro', label='Original data')

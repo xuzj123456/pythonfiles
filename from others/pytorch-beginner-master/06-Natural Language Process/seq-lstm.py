@@ -59,7 +59,7 @@ class LSTMTagger(nn.Module):
             else:
                 tempchar = self.char_lstm(Variable(char_list))
             tempchar = tempchar.squeeze(0)
-            char = torch.cat((char, tempchar.cpu().data), 0)
+            char = torch.cat((char, tempchar.cpu().data1), 0)
         if torch.cuda.is_available():
             char = char.cuda()
         char = Variable(char)

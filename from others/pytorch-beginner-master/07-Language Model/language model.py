@@ -48,7 +48,7 @@ optimizer = optim.Adam(model.parameters(), lr=1e-3)
 
 
 def detach(states):
-    return [Variable(state.data).cuda() for state in states]
+    return [Variable(state.data1).cuda() for state in states]
 
 
 for epoch in range(5):

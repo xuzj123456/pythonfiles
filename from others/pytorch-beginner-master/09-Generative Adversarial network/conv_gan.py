@@ -149,12 +149,12 @@ for epoch in range(num_epoch):
             print('Epoch [{}/{}], d_loss: {:.6f}, g_loss: {:.6f} '
                   'D real: {:.6f}, D fake: {:.6f}'
                   .format(epoch, num_epoch, d_loss.data[0], g_loss.data[0],
-                          real_scores.data.mean(), fake_scores.data.mean()))
+                          real_scores.data1.mean(), fake_scores.data1.mean()))
     if epoch == 0:
-        real_images = to_img(real_img.cpu().data)
+        real_images = to_img(real_img.cpu().data1)
         save_image(real_images, './dc_img/real_images.png')
 
-    fake_images = to_img(fake_img.cpu().data)
+    fake_images = to_img(fake_img.cpu().data1)
     save_image(fake_images, './dc_img/fake_images-{}.png'.format(epoch+1))
 
 torch.save(G.state_dict(), './generator.pth')

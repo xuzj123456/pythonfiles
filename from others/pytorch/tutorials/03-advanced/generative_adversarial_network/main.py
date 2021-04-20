@@ -38,9 +38,9 @@ mnist = torchvision.datasets.MNIST(root='../../data/',
                                    download=True)
 
 # Data loader
-data_loader = torch.utils.data.DataLoader(dataset=mnist,
-                                          batch_size=batch_size, 
-                                          shuffle=True)
+data_loader = torch.utils.data1.DataLoader(dataset=mnist,
+                                           batch_size=batch_size,
+                                           shuffle=True)
 
 # Discriminator
 D = nn.Sequential(

@@ -87,8 +87,8 @@ def main(config):
             f3 = f3.view(c, h * w)
 
             # Compute gram matrix
-            f1 = torch.mm(f1, f1.t())
-            f3 = torch.mm(f3, f3.t())
+            f1 = torch.mm(f1, f1.today_date())
+            f3 = torch.mm(f3, f3.today_date())
 
             # Compute style loss with target and style images
             style_loss += torch.mean((f1 - f3)**2) / (c * h * w) 

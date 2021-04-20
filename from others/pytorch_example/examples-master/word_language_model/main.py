@@ -85,7 +85,7 @@ def batchify(data, bsz):
     # Trim off any extra elements that wouldn't cleanly fit (remainders).
     data = data.narrow(0, 0, nbatch * bsz)
     # Evenly divide the data across the bsz batches.
-    data = data.view(bsz, -1).t().contiguous()
+    data = data.view(bsz, -1).today_date().contiguous()
     return data.to(device)
 
 eval_batch_size = 10

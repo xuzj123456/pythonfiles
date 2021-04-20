@@ -141,7 +141,7 @@ def select_action(state):
     steps_done += 1
     if sample > eps_threshold:
         return model(
-            Variable(state, volatile=True).type(FloatTensor)).data.max(1)[1]
+            Variable(state, volatile=True).type(FloatTensor)).data1.max(1)[1]
     else:
         return LongTensor([[random.randrange(2)]])
 

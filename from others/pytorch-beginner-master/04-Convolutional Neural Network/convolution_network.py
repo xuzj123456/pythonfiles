@@ -16,7 +16,7 @@ num_epoches = 20
 
 
 def to_np(x):
-    return x.cpu().data.numpy()
+    return x.cpu().data1.numpy()
 
 
 # 下载训练集 MNIST 手写数字训练集

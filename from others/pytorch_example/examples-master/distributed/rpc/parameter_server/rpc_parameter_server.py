@@ -272,14 +272,14 @@ if __name__ == '__main__':
         processes.append(p)
     else:
         # Get data to train on
-        train_loader = torch.utils.data.DataLoader(
+        train_loader = torch.utils.data1.DataLoader(
             datasets.MNIST('../data', train=True, download=True,
                            transform=transforms.Compose([
                                transforms.ToTensor(),
                                transforms.Normalize((0.1307,), (0.3081,))
                            ])),
             batch_size=32, shuffle=True)
-        test_loader = torch.utils.data.DataLoader(
+        test_loader = torch.utils.data1.DataLoader(
             datasets.MNIST('../data', train=False,
                            transform=transforms.Compose([
                                transforms.ToTensor(),

@@ -4,52 +4,59 @@ import time
 import datetime
 import pandas as pd
 import pymysql
+import talib as ta
+import matplotlib.pyplot as plt
+from sqlalchemy import create_engine
 
-# 数据库参数
-host='localhost'
-port=3306
-user='root'
-passwd='13579'
-db='emotions'
-charset='utf8'
+# 连接数据库
+try:
+    engine = create_engine('mysql+mysqldb://root:13579@localhost:3306/emotions?charset=utf8')
+except Exception as e:
+    print('数据库连接失败，3s后重试')
+    print(e)
+    time.sleep(3)
+
+# 连接数据库
+# try:
+#     con = pymysql.connect(host='localhost',
+#                          port=3306,
+#                          user='root',
+#                          passwd='13579',
+#                          db='emotions',
+#                          charset='utf8')
+# except Exception as e:
+#     print('数据库连接失败，3s后重试')
+#     print(e)
+#     time.sleep(3)
+# # 创建游标
+# cursor = con.cursor()
+
 
 # 连接万得
 w.start()
 w.isconnected()
 
-# 所有交易日期
-dates = w.tdays('2010-01-01', Period="D").Data[0]
-dates = [datetime.date(d.year,d.month,d.day) for d in dates]
+start_date = datetime.date(2015,1,1)
 
 # 今天日期
-t = datetime.date.today()
+today_date = datetime.date.today()
+# 上一个交易日日期  last trading date
+last_t_d = w.tdaysoffset(-1, today_date).Data[0][0]
+last_t_d = datetime.date(last_t_d.year,last_t_d.month,last_t_d.day)
 
-# 连接数据库
-try:
-    con = pymysql.connect(host=host,
-                         port=port,
-                         user=user,
-                         passwd=passwd,
-                         db=db,
-                         charset=charset)
-except Exception as e:
-    print('数据库连接失败，3s后重试')
-    print(e)
-    time.sleep(3)
-# 创建游标
-cursor = con.cursor()
 
 # 得到所有A股code
-def get_allAstock_code():
-    #所有a股
-    all_a = w.wset("SectorConstituent",date = datetime.date.today() ,sector=u"全部A股")
+def get_allAstock_code(date):
+    #所有a股code
+    all_a = w.wset("SectorConstituent", date = date ,sector=u"全部A股")
     all_Code = list(pd.Series(all_a.Data[1]))
-    #停牌股
+    #停牌股code
     all_tp = w.wset("TradeSuspend",startdate = date,enddate = date,field = "wind_code,sec_name,suspend_type,suspend_reason")
     all_tp_code = list(pd.Series(all_tp.Data[0]))
-    #所有st
+    #所有st股code
     all_st = w.wset("SectorConstituent",date=date,sector=u"风险警示股票",field="wind_code,sec_name")
     all_st_code = list(pd.Series(all_st.Data[0]))
+
     all_Code = set(all_Code)
     all_st_code = set(all_st_code)
     all_tp_code = set(all_tp_code)
@@ -57,25 +64,6 @@ def get_allAstock_code():
     return list(code)
 
 #####################################################################################
-
-# 资金流_日
-list_1 = ['沪市港股通:当日资金净流入(人民币)', '深市港股通:当日资金净流入(人民币)',
-             '沪股通:当日资金净流入(人民币)', '深股通:当日资金净流入(人民币)', '融资买入额',
-             '融券卖出额','融资融券交易金额']
-list_1_code = "M0329501,M0329505,M0329497,M0329499,M0075987,M0075988,M0075989"
-
-# 指数_日
-list_2 = ['换手率:上证综合指数', '换手率:深证成份指数',
-             '换手率:创业板指数','换手率:上证50指数','换手率:沪深300指数','换手率:中证500指数']
-list_2_code = "M0331169,M0331175,M0331181,M0331174,M0331172,M0331184"
-
-# 市场表现_日
-list_3 = ['上证所:市场总成交金额',
-             '深交所:市场总成交金额']
-list_3_code = "G8324475,G8324488"
-
-
-
 
 # 数据表创建SQL代码
 SQL_create = """

@@ -52,7 +52,7 @@ if args.resume_snapshot:
 else:
     model = SNLIClassifier(config)
     if args.word_vectors:
-        model.embed.weight.data.copy_(inputs.vocab.vectors)
+        model.embed.weight.data1.copy_(inputs.vocab.vectors)
         model.to(device)
 
 criterion = nn.CrossEntropyLoss()

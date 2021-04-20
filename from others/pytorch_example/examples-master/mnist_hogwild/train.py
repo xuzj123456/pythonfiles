@@ -7,7 +7,7 @@ import torch.nn.functional as F
 def train(rank, args, model, device, dataset, dataloader_kwargs):
     torch.manual_seed(args.seed + rank)
 
-    train_loader = torch.utils.data.DataLoader(dataset, **dataloader_kwargs)
+    train_loader = torch.utils.data1.DataLoader(dataset, **dataloader_kwargs)
 
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum)
     for epoch in range(1, args.epochs + 1):
@@ -17,7 +17,7 @@ def train(rank, args, model, device, dataset, dataloader_kwargs):
 def test(args, model, device, dataset, dataloader_kwargs):
     torch.manual_seed(args.seed)
 
-    test_loader = torch.utils.data.DataLoader(dataset, **dataloader_kwargs)
+    test_loader = torch.utils.data1.DataLoader(dataset, **dataloader_kwargs)
 
     test_epoch(model, device, test_loader)
 

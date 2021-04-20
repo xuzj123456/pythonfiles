@@ -1,29 +1,37 @@
 # coding=utf-8
 from configuration import *
 
+table_name = '资金流_日'
 
-result = w.edb(list_1_code,
-               "2015-01-01", t, "Fill=blank")
+max_date = engine.execute("SELECT max(日期) FROM {0};".format(table_name)).fetchall()[0][0]
+if not max_date == None:
+    start_date = w.tdaysoffset(-1, max_date).Data[0][0]
+
+# 资金流_日
+list_1 = ['沪市港股通:当日资金净流入(人民币)', '深市港股通:当日资金净流入(人民币)',
+             '沪股通:当日资金净流入(人民币)', '深股通:当日资金净流入(人民币)', '融资买入额',
+             '融券卖出额','融资融券交易金额']
+list_1_code = "M0329501,M0329505,M0329497,M0329499,M0075987,M0075988,M0075989"
+
+
+result = w.edb(list_1_code, start_date, today_date, "Fill=blank")
 df = pd.DataFrame(result.Data, columns=result.Times).transpose()
-df.fillna(0, inplace=True)
+df.dropna(inplace=True)
 df.set_axis(list_1,
             axis='columns', inplace=True)
+df.index.name = '日期'
 
-def handle_sql(sql):
-    try:
-        cursor.execute(sql)
-        con.commit()
-    except Exception as e:
-        con.rollback()
-        print(e)
+# 首次运行创建表运行：
+# df.to_sql(table_name, con=engine, if_exists='append')
 
-for i in range(len(df.index)):
-    sql = "INSERT INTO 资金流_日 VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}');".format(df.index[i],
-                                                                                             df.iloc[i:i+1, 0].values[0],
-                                                                                             df.iloc[i:i+1, 1].values[0],
-                                                                                             df.iloc[i:i+1, 2].values[0],
-                                                                                             df.iloc[i:i+1, 3].values[0],
-                                                                                             df.iloc[i:i+1, 4].values[0],
-                                                                                             df.iloc[i:i+1, 5].values[0],
-                                                                                             df.iloc[i:i+1, 6].values[0])
-    handle_sql(sql)
+try:
+    data = engine.execute("SELECT * FROM {0};".format(table_name)).fetchall()
+    if len(data) != 0:
+        data = pd.DataFrame(data)[0]
+        l = [i not in list(data) for i in df.index]
+        df_insert = df[l]
+        df_insert.to_sql(table_name, con=engine, if_exists='append')
+    else:
+        df.to_sql(table_name, con=engine, if_exists='append')
+except Exception as e:
+    print(e)

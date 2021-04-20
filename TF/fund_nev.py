@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import time
 import os
-os.chdir(r"D:\TF\定量评估\同温层\数据")
+os.chdir(r"D:\TF\定量评估\柏泰华盈\数据")
 # 连接朝阳永续数据库提取产品净值数据
 def execude_sql(sql):
     # 创建连接
