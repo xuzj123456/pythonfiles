@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import time
 import os
-os.chdir(r"D:\TF\定量评估\柏泰华盈\数据")
+os.chdir(r"D:\TF\基金净值汇总")
 # 连接朝阳永续数据库提取产品净值数据
 def execude_sql(sql):
     # 创建连接
@@ -40,4 +40,4 @@ while(True):
     df = execude_sql(sql)
     # df = df.drop(df.index[0])
     # 存储数据
-    df.to_csv(''.join(df.columns)+'.csv',encoding = "utf_8_sig")
+    df.to_csv(str(fund_id)+' '+''.join(df.columns)+'.csv',encoding = "utf_8_sig")

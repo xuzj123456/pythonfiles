@@ -2,10 +2,14 @@
 from configuration import *
 
 table_name = '技术指标_日'
-max_date = engine.execute("SELECT max(日期) FROM emotions.{0};".format(table_name)).fetchall()[0][0]
-if not max_date == None:
-    start_date = w.tdaysoffset(-1, max_date).Data[0][0]
+
+try:
+    max_date = engine.execute("SELECT max(日期) FROM emotions.{0};".format(table_name)).fetchall()[0][0]
+    if not max_date == None:
+        start_date = w.tdaysoffset(-1, max_date).Data[0][0]
     # 如果只有一天，之后取数据时容易报错
+except:
+    pass
 
 # 所有交易日期
 dates = w.tdays(start_date, Period="D").Data[0]
@@ -28,12 +32,16 @@ for d in dates[:-1]:
         print(d)
         print(e)
 
+    if data1.ErrorCode != 0:
+        break
+
     df1 = pd.DataFrame(data1.Data).transpose()
     df1.set_axis(list_4, axis='columns', inplace=True)
     df1.set_axis(data1.Codes, axis='index', inplace=True)
     df1.sort_index(inplace=True)
     df1.dropna(inplace=True)
 
+    df.loc[d] = [None, None, None, None, None, None]
     df.loc[d]['总股票数'] = len(df1.index)
     # 先计算总数，之后统一算占比
     df.loc[d]['超过月均线股票占比'] = list(df1['20日移动平均']>df1['收盘价']).count(True)/df.loc[d]['总股票数']
@@ -44,26 +52,4 @@ for d in dates[:-1]:
 
 df.index.name = '日期'
 
-try:
-    data = engine.execute("SELECT * FROM {0};".format(table_name)).fetchall()
-    if len(data) != 0:
-        data = pd.DataFrame(data)[0]
-        l = [i not in list(data) for i in df.index]
-        df_insert = df[l]
-        df_insert.to_sql(table_name, con=engine, if_exists='append')
-    else:
-        df.to_sql(table_name, con=engine, if_exists='append')
-except Exception as e:
-    print(e)
-
-
-list_5 = ['上证综合指数','沪深300指数','上证50指数','深证成份指数','中证500指数',
-          '涨跌幅：上证综合指数','涨跌幅：沪深300指数','涨跌幅：上证50指数',
-          '涨跌幅：深证成份指数','涨跌幅：中证500指数']
-list_5_code = "M0020188,M0020209,M0020223,M0020251,M0062541," \
-              "M0020194,M0020215,M0020229,M0020257,M0062545"
-
-data2 = w.edb(list_5_code, start_date, today_date)
-df2 = pd.DataFrame(data2.Data).transpose()
-df2.set_axis(list_5, axis='columns', inplace=True)
-df2.set_axis(data2.Times, axis='index', inplace=True)
+save_(table_name, df)

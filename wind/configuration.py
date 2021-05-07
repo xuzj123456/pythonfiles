@@ -3,10 +3,15 @@ from WindPy import w
 import time
 import datetime
 import pandas as pd
+import numpy as np
+from scipy.signal import detrend
 import pymysql
 import talib as ta
 import matplotlib.pyplot as plt
 from sqlalchemy import create_engine
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import scale
+from sklearn.cross_decomposition import PLSRegression
 
 # 连接数据库
 try:
@@ -63,19 +68,33 @@ def get_allAstock_code(date):
     code = all_Code - all_tp_code - all_st_code
     return list(code)
 
+plt.rcParams['font.sans-serif'] = ['SimHei']  # 用来正常显示中文标签
+plt.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
+
 #####################################################################################
 
-# 数据表创建SQL代码
-SQL_create = """
-CREATE TABLE `emotions`.`资金流_日` (
-  `日期` DATE NOT NULL,
-  `沪市港股通:当日资金净流入(人民币)` FLOAT NULL,
-  `深市港股通:当日资金净流入(人民币)` FLOAT NULL,
-  `沪股通:当日资金净流入(人民币)` FLOAT NULL,
-  `深股通:当日资金净流入(人民币)` FLOAT NULL,
-  `融资买入额` FLOAT NULL,
-  `融券卖出额` FLOAT NULL,
-  `融资融券交易金额` FLOAT NULL,
-  PRIMARY KEY (`日期`),
-  UNIQUE INDEX `日期_UNIQUE` (`日期` ASC) VISIBLE);
-"""
+# sql设置主键 primary key
+def SQL_PK(table_name):
+    SQL = '''
+    ALTER TABLE `{0}` 
+    CHANGE COLUMN `日期` `日期` DATE NOT NULL ,
+    ADD PRIMARY KEY (`日期`),
+    ADD UNIQUE INDEX `日期_UNIQUE` (`日期` DESC) VISIBLE;
+    '''.format(table_name)
+    return SQL
+
+def save_(table_name, df):
+    try:
+        data = engine.execute("SELECT * FROM {0};".format(table_name)).fetchall()
+        data = pd.DataFrame(data)[0]
+        l = [i not in list(data) for i in df.index]
+        df_insert = df[l]
+        df_insert.to_sql(table_name, con=engine, if_exists='append')
+    except Exception as e:
+        if e.__cause__.args[0] == 1146:
+            df.to_sql(table_name, con=engine, if_exists='append')
+            engine.execute(SQL_PK(table_name))
+            print('\n')
+            print('Table {0} created succesfully.'.format(table_name))
+        else:
+            print(e)
