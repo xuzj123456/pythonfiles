@@ -1,7 +1,7 @@
 import re
 import sys
 from io import StringIO
-from test import stdout_redirect
+from test.test import stdout_redirect
 from unittest.mock import patch
 
 from nose.tools import assert_equal, assert_greater, assert_in, assert_not_in

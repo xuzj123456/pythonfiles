@@ -13,7 +13,7 @@ t_weeks = [datetime.date(t.year,t.month,t.day) for t in t_weeks.Data[0]]
 t_weeks = [str(t) for t in t_weeks]
 
 date = datetime.date(2019,3,22)
-file = 'data/'+'311744 众智对冲一号.csv'
+file = 'data/'+'49416 平石T5对冲.csv'
 
 if 'xlsx' in file or 'xls' in file:
     df = pd.read_excel(file, index_col=0)
@@ -86,7 +86,7 @@ df_type = pd.read_excel(f_type, sheet_name='私募')
 corr_df=pd.merge(corr_df, df_type, how='left', left_on='fund_name', right_on='跟踪产品')
 
 corr_df.sort_values(by='corr',inplace=True,ascending=False)
-corr_df = corr_df.loc[:,['corr','name', 'fund_name', 'fund_id', '策略细分','fund_type_strategy','begin_date']]
+corr_df = corr_df.loc[:,['corr','name', 'fund_name', 'fund_id', '交易品种', '交易频率','策略细分','fund_type_strategy','begin_date']]
 print(corr_df.head(30))
 
 type='管理期货复合'
