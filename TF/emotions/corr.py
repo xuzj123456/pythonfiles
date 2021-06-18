@@ -1,12 +1,12 @@
 # coding=utf-8
-from configuration import *
+from config import *
 
-day_lag = 250
-X_table = '指数换手率_日'
-X_name = '换手率_沪深300指数'
+day_lag = 0
+X_table = '宏观_月'
+X_name = '上证所_A股账户新增开户数_合计'
 Y_table = '沪深300'
-Y_name = '250日涨跌幅'
-Y_name_p = '收盘价'
+Y_name = '20日涨跌幅'
+m_flag = True
 
 def plot_(df, day_lag):
     fig = plt.figure()
@@ -19,7 +19,7 @@ def plot_(df, day_lag):
     plt.legend(lines, [l.get_label() for l in lines])
 
 
-def run(day_lag, X_table, X_name, Y_table, Y_name):
+def run(day_lag, X_table, X_name, Y_table, Y_name, m_flag=m_flag):
     result = engine.execute("SELECT 日期,{0} FROM stock_index.{1};".format(Y_name, Y_table)).fetchall()
     df = pd.DataFrame(result)
     df.set_index(df[0], inplace=True)
@@ -32,11 +32,16 @@ def run(day_lag, X_table, X_name, Y_table, Y_name):
     df_.drop(labels=0, axis=1, inplace=True)
     df_.columns = [X_name]
 
-    df_.shift(day_lag)
+    if m_flag == False:
+        df_.shift(day_lag)
+        df = df.join(df_, how='left')
+        df.dropna(inplace=True)
+        df = df.iloc[100:, ]
+    else:
+        df = df.join(df_, how='left')
+        df.dropna(inplace=True)
+        df_.shift(day_lag)
 
-    df = df.join(df_, how='left')
-
-    df = df.iloc[-1000:,]
 
     # 去除异常值
 #    df = df[df.iloc[:,0]>=-0.06]
@@ -46,7 +51,7 @@ def run(day_lag, X_table, X_name, Y_table, Y_name):
     df.dropna(inplace=True)
 
 #    去趋势
-#    pd.DataFrame(detrend(df, axis=0, overwrite_data=True))
+    pd.DataFrame(detrend(df, axis=0, overwrite_data=True))
     return df
 
 
@@ -61,10 +66,14 @@ if __name__ == '__main__':
     print('beta:', model.params[1])
     print('t:', model.tvalues[1])
     print('R2', model.rsquared)
+    print('time:',df.index[0], df.index[-1])
 
     plt.plot(x, model.predict(), color='r', linewidth=2)
     plt.scatter(x, y, alpha=0.5)
-    plt.xlabel(x.name+'(t-'+str(day_lag)+')')
+    if day_lag == 0:
+        plt.xlabel(x.name)
+    else:
+        plt.xlabel(x.name+'(t-'+str(day_lag)+')')
     plt.ylabel(y.name)
 
 #    df_ = run(day_lag, X_table, X_name, Y_table, Y_name_p)

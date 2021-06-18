@@ -1,5 +1,5 @@
 # coding=utf-8
-from configuration import *
+from config import *
 
 pca = PCA(n_components=2)
 
@@ -8,7 +8,7 @@ t=1
 Y_table = '沪深300'
 #Y_name = 'MA'+str(t)
 Y_name = '收盘价'
-result=engine.execute("SELECT 日期,{0} FROM emotions.{1};".format(Y_name,Y_table)).fetchall()
+result=engine.execute("SELECT 日期,{0} FROM stock_index.{1};".format(Y_name,Y_table)).fetchall()
 df = pd.DataFrame(result)
 df.set_index(df[0],inplace=True)
 df.drop(labels=0,axis=1,inplace=True)
@@ -16,7 +16,7 @@ df.columns = [Y_table+'.'+Y_name]
 
 X = [['沪深成交总额','市场表现_日'],
      ['沪深两市风险溢价','市盈率_日'],
-     ['沪深两市涨停家数占比','涨跌停_日'],
+     ['沪深两市上涨家数占比','涨跌停_日'],
      ['换手率_沪深300指数','指数换手率_日'],
      ['融资融券余额','资金流_日'],
      ['北上资金净流入','资金流_日'],

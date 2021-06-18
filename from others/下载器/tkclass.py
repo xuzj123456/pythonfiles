@@ -119,7 +119,7 @@ class Showpro():#配置进度条
     def progressbar_thread (self) :  #实时显示下载进度
         self.file_size=0
         self.file_total=self.gf.getsize()  #获取下载文件大小
-        while self.file_size<self.file_total and self.gf.flag:
+        while self.file_size<self.file_total and self.gf.type:
             time.sleep(1)
             if os.path.exists(self.filename):
                 self.downspeed.set('{:.1f}KB/S'.format((os.path.getsize(self.filename)-self.file_size)/1024))
@@ -146,7 +146,7 @@ class Showpro():#配置进度条
             self.label_1.configure(image=self.photo3)
             self.tv.set('暂停')
             self.downspeed.set('等待下载...')
-            self.gf.flag=True
+            self.gf.type=True
             self.gf.header_flag=True
             t1=threading.Thread(target=self.progressbar_thread)
             t1.setDaemon(True)
@@ -158,7 +158,7 @@ class Showpro():#配置进度条
         else : #暂停下载
             self.label_1.configure(image=self.photo1)
             self.downspeed.set('暂停中...')
-            self.gf.flag=False
+            self.gf.type=False
             self.tv.set('开始')
     
     def cancel(self,e): #取消下载

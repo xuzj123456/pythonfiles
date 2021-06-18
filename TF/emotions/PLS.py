@@ -1,12 +1,12 @@
 # coding=utf-8
-from configuration import *
+from config import *
 # partial least-square method
 
 t=5
 
 Y_table = '沪深300'
 Y_name = 'MA'+str(t)
-result=engine.execute("SELECT 日期,{0} FROM emotions.{1};".format(Y_name,Y_table)).fetchall()
+result=engine.execute("SELECT 日期,{0} FROM stock_index.{1};".format(Y_name,Y_table)).fetchall()
 df = pd.DataFrame(result)
 df.set_index(df[0],inplace=True)
 df.drop(labels=0,axis=1,inplace=True)
@@ -47,7 +47,7 @@ JN = np.identity(N)-1/T*np.ones(N).reshape(-1,1)@np.ones(N).reshape(1,-1)
 
 S_PLS = X@JN@X.T@JT@R*(1/(R.T@JT@X@JN@X.T@JT@R))@R.T@JT@R
 
-S = pd.DataFrame(S_PLS, index=df.index, columns=['情绪指数'])
+S = pd.DataFrame(S_PLS, index=df.index, columns=['PLS'])
 S = S.join(df.iloc[:,0], how='left')
 
 S_=detrend(S, axis=0, overwrite_data=False)

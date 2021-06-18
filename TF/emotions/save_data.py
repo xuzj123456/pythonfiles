@@ -1,5 +1,5 @@
 # coding=utf-8
-from configuration import *
+from config import *
 
 def run(schema, engine):
     table_names = engine.table_names()
@@ -16,7 +16,7 @@ def run(schema, engine):
 
         if schema not in os.listdir('.\\data'):
             os.mkdir('.\\data\\'+schema)
-        df.to_csv('.\\data\\'+schema+'\\'+table+'.csv', encoding='gbk')
+        df.to_csv('.\\data\\'+schema+'\\'+table+'.csv', encoding='gbk', index=False)
 
 
 if __name__ == '__main__':
